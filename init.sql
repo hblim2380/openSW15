@@ -1,0 +1,44 @@
+-- 테이블 생성
+CREATE TABLE Menu (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price INT NOT NULL,
+    filename VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE "Order" (
+    id SERIAL PRIMARY KEY,
+    time TIMESTAMP NOT NULL,
+    total INT NOT NULL
+);
+
+CREATE TABLE OrderMenu (
+    id SERIAL PRIMARY KEY,
+    menu_id INT NOT NULL,
+    order_id INT NOT NULL,
+    amount INT NOT NULL,
+    FOREIGN KEY (menu_id) REFERENCES Menu (id),
+    FOREIGN KEY (order_id) REFERENCES "Order" (id)
+);
+
+-- 초기 데이터 삽입
+INSERT INTO Menu (name, price, filename) VALUES
+('갈비만두', 5000, '갈비만두.jpg'),
+('김밥', 4000, '김밥.jpg'),
+('김치볶음밥', 6000, '김치볶음밥.jpg'),
+('돈까스', 7000, '돈까스.jpg'),
+('떡만두국', 6500, '떡만두국.jpg'),
+('떡볶이', 5000, '떡볶이.jpg'),
+('라면', 4000, '라면.jpg'),
+('물냉면', 7000, '물냉면.jpg'),
+('부대찌개', 8000, '부대찌개.jpg'),
+('비빔밥', 7000, '비빔밥.jpg'),
+('새우튀김', 3000, '새우튀김.jpg'),
+('소떡소떡', 2000, '소떡소떡.jpg'),
+('오므라이스', 7000, '오므라이스.jpg'),
+('우동', 6000, '우동.jpg'),
+('육개장', 7500, '육개장.jpg'),
+('잔치국수', 5000, '잔치국수.jpg'),
+('제육덮밥', 7000, '제육덮밥.jpg'),
+('치킨마요덮밥', 6500, '치킨마요덮밥.jpg'),
+('커리덮밥', 7000, '커리덮밥.jpg');
