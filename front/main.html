@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>식당 키오스크</title>
+    <link rel="stylesheet" href="style_main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h1>식당 키오스크</h1>
+            <div class="menu">
+                <div class="menu-item" onclick="addToOrder('햄버거', 5900)">
+                    <img src="https://via.placeholder.com/150x150?text=햄버거" alt="햄버거">
+                    <p>햄버거</p>
+                    <p>₩5,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('피자', 8900)">
+                    <img src="https://via.placeholder.com/150x150?text=피자" alt="피자">
+                    <p>피자</p>
+                    <p>₩8,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('샐러드', 4900)">
+                    <img src="https://via.placeholder.com/150x150?text=샐러드" alt="샐러드">
+                    <p>샐러드</p>
+                    <p>₩4,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('콜라', 1900)">
+                    <img src="https://via.placeholder.com/150x150?text=콜라" alt="콜라">
+                    <p>콜라</p>
+                    <p>₩1,900</p>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu-item" onclick="addToOrder('햄버거', 5900)">
+                    <img src="https://via.placeholder.com/150x150?text=햄버거" alt="햄버거">
+                    <p>햄버거</p>
+                    <p>₩5,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('피자', 8900)">
+                    <img src="https://via.placeholder.com/150x150?text=피자" alt="피자">
+                    <p>피자</p>
+                    <p>₩8,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('샐러드', 4900)">
+                    <img src="https://via.placeholder.com/150x150?text=샐러드" alt="샐러드">
+                    <p>샐러드</p>
+                    <p>₩4,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('콜라', 1900)">
+                    <img src="https://via.placeholder.com/150x150?text=콜라" alt="콜라">
+                    <p>콜라</p>
+                    <p>₩1,900</p>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu-item" onclick="addToOrder('햄버거', 5900)">
+                    <img src="https://via.placeholder.com/150x150?text=햄버거" alt="햄버거">
+                    <p>햄버거</p>
+                    <p>₩5,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('피자', 8900)">
+                    <img src="https://via.placeholder.com/150x150?text=피자" alt="피자">
+                    <p>피자</p>
+                    <p>₩8,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('샐러드', 4900)">
+                    <img src="https://via.placeholder.com/150x150?text=샐러드" alt="샐러드">
+                    <p>샐러드</p>
+                    <p>₩4,900</p>
+                </div>
+                <div class="menu-item" onclick="addToOrder('콜라', 1900)">
+                    <img src="https://via.placeholder.com/150x150?text=콜라" alt="콜라">
+                    <p>콜라</p>
+                    <p>₩1,900</p>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h2>주문 요약</h2>
+                <ul id="order-list">
+                    <!-- 주문 내역 표시 -->
+                </ul>
+                <p>총합: ₩<span id="total-price">0</span></p>
+                <button onclick="completeOrder()">주문 완료</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        let order = [];
+        let totalPrice = 0;
+
+        function addToOrder(item, price) {
+            order.push({ item, price });
+            totalPrice += price;
+            updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+            const orderList = document.getElementById('order-list');
+            orderList.innerHTML = '';
+            order.forEach((orderItem, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${orderItem.item} - ₩${orderItem.price.toLocaleString()}`;
+                orderList.appendChild(li);
+            });
+            document.getElementById('total-price').textContent = totalPrice.toLocaleString();
+        }
+
+        function completeOrder() {
+            if (order.length === 0) {
+                alert('주문 내역이 없습니다!');
+                return;
+            }
+            alert('주문이 완료되었습니다. 감사합니다!');
+            order = [];
+            totalPrice = 0;
+            updateOrderSummary();
+        }
+    </script>
+</body>
+</html>

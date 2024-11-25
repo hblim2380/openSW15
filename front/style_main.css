@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh; /* 화면 크기만큼 최소 높이 설정 */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f4f4f9;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.menu-item {
+    width: 150px;
+    /* 배경색 제거 */
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    border-bottom: 1px solid #ccc; /* 가로 구분선 추가 */
+}
+
+.menu-item img {
+    width: 100%;
+    height: auto;
+    /* 이미지에 둥근 모서리 제거 (필요 시) */
+}
+
+.menu-item:hover {
+    opacity: 0.8; /* 호버 효과 변경 */
+}
+
+.menu-item p {
+    margin: 5px 0;
+}
+
+.order-summary {
+    margin-top: 20px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
