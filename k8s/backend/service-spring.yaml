@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-service
+  labels:
+    app: spring-boot-app
+spec:
+  selector:
+    app: spring-boot-app
+  ports:
+  - protocol: TCP
+    port: 80 # 외부에서 접근하는 포트
+    targetPort: 8080 # 컨테이너 내부 포트
+  type: LoadBalancer # 외부에서 접근 가능하도록 LoadBalancer 타입 사용
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+  labels:
+    app: spring-boot-app
+spec:
+  replicas: 1 # 원하는 레플리카 수
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+      - name: spring-boot-container
+        image: chan4527/backend-app:latest # Docker 이미지 이름
+        ports:
+        - containerPort: 8080 # 애플리케이션 기본 포트
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod" # 프로파일 활성화
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: username
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: password
+
