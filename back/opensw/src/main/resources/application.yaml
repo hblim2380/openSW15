@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: opensw
+
+  datasource:
+    username: admin
+    password: password
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      pool-name: PostgreSQLPool
+      connection-timeout: 20000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  profiles:
+    active: dev # ?? ??? ????
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    username: admin
+    password: password
+    url: jdbc:postgresql://localhost:5432/kiosk
+  app:
+    name: DefaultApp
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://postgres-service:5432/kiosk
+  app:
+    name: ProductionApp
