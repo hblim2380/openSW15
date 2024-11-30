@@ -3,123 +3,862 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>식당 키오스크</title>
-    <link rel="stylesheet" href="style_main.css">
+    <title>스마트 키오스크</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    
+    <style>
+    :root {
+        --background-color: #ffffff;
+        --primary-color: #87cefa; /* Light Sky Blue */
+        --text-color: #000000;
+        --highlight-color: #b0e0e6; /* Additional sky blue for highlights */
+    }
+    
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    }
+
+    .container {
+        background-color: var(--background-color);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        border-radius: 15px;
+        color: var(--text-color);
+    }
+
+    .header {
+        background: var(--primary-color);
+        color: var(--text-color);
+        text-align: center;
+        border-radius: 15px;
+    }
+
+    .nav-pills .nav-link {
+        color: var(--text-color);
+        background: var(--highlight-color);
+        transition: all 0.3s;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: var(--primary-color);
+        color: #ffffff;
+    }
+
+    .menu-grid .menu-item img {
+        height: 200px;
+        object-fit: cover;
+    }
+    
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 834px;
+            min-height: 100vh;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4a89dc, #5c97bc);
+            color: white;
+            padding: 50px 0;
+            position: relative;
+            text-align: center;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(74, 137, 220, 0.4);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            transform: skewX(-15deg);
+            z-index: 1;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            right: -50px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(-5deg);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .elderly .header h1 {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+        }
+
+        .elderly .header .subtitle {
+            font-size: 1.5rem;
+        }
+
+        .child .header h1 {
+            font-size: 2.5rem;
+            color: #ffeb3b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(to right, #ffeb3b, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .child .header .subtitle {
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .nav-pills {
+            background-color: #f4f7f9;
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            margin-top: 15px;
+        }
+
+        .nav-pills .nav-link {
+            color: #2c3e50;
+            margin: 0 5px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 15px;
+        }
+
+        .nav-pills .nav-link i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #4a89dc;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(74, 137, 220, 0.3);
+        }
+
+        .nav-pills .nav-link.active i {
+            opacity: 1;
+            color: white;
+        }
+
+        .nav-pills .nav-link:not(.active):hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+
+        .nav-pills .nav-link:not(.active):hover i {
+            opacity: 1;
+        }
+
+        .menu-container {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .menu-item {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 10px;
+            overflow: hidden;;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.1);
+        }
+
+
+        .card-body {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .card-title {
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .card-text {
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .order-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: #27ae60;
+            border: none;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .order-button:hover {
+            background-color: #2ecc71;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 17px rgba(39, 174, 96, 0.4);
+        }
+
+        /* 더미 컴포넌트 */
+        .dummy-space {
+            display: none; /* 기본적으로 더미 공간 숨기기 */
+        }
+
+        .child .dummy-space {
+            display: block; /* 아이 모드에서만 더미 공간 활성화 */
+            height: 700px; /* 음식 컴포넌트를 아래로 내리기 위한 공간 */
+        }
+
+        /* 노인 모드 */
+        .elderly .menu-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .elderly .menu-item {
+            font-size: 2.2rem;
+        }
+        .elderly h5 {
+            font-size: 2.4rem;
+        }
+
+        /* 어린이 모드 */
+        .child .menu-container {
+            margin-bottom: 20px; /* 여유 공간 확보 */
+        }
+
+        .child .menu-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px;
+        }
+
+        .child .menu-item {
+            flex: 0 0 33.333%;
+            scroll-snap-align: start;
+        }
+
+        .child .menu-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .child .menu-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .modal-menu-options {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .option-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .total-price {
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        /* 모달 디자인 개선 */
+        .modal-menu-options {
+            background-color: #f4f6f9;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .option-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        #cartSidebar {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            transition: bottom 0.3s ease;
+            z-index: 1050;
+            padding: 20px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+        }
+
+        #cartSidebar.show {
+            bottom: 0;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1040;
+            display: none;
+        }
+
+        .cart-overlay.show {
+            display: block;
+        }
+
+        /* 노인 모드 추가 스타일 */
+        .elderly {
+            font-size: 2.4rem;
+        }
+
+        .elderly .nav-pills .nav-link {
+            font-size: 2.6rem;
+        }
+
+        .elderly .modal-dialog {
+            max-width: 90%;
+            margin: 2.2rem auto;
+        }
+        .elderly .modal-dialog .modal-content {
+            font-size: 1.2rem;
+        }
+
+        /* 어린이 모드 추가 스타일 */
+        .child .menu-container {
+            margin-bottom: 100px;
+        }
+
+        .child .menu-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px;
+        }
+
+        .child .menu-item {
+            flex: 0 0 33.333%;
+            scroll-snap-align: start;
+        }
+
+        .child .menu-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .child .menu-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .elderly #cartSidebar {
+            font-size: 3.2rem;
+        }
+
+
+        .elderly #cartSidebar .total-price {
+            font-size: 1.8rem;
+        }
+
+        /* 노인 모드 모달 개선 */
+        .elderly .modal-menu-options h6 {
+            font-size: 3.2rem;
+        }
+        .elderly .option-item label {
+            font-size: 2.8rem;
+        }
+
+        /* 어린이 모드 모달 위치 */
+        .child .modal-dialog {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .child .modal-dialog .modal-content {
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 0;
+        }
+
+        /* 장바구니 오버레이와 사이드바 스타일 유지 */
+        #cartSidebar {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            transition: bottom 0.3s ease;
+            z-index: 1050;
+            padding: 20px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+        }
+
+        #cartSidebar.show {
+            bottom: 0;
+        }
+
+
+
+
+    </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <h1>식당 키오스크</h1>
-            <div class="menu">
-                <div class="menu-item" onclick="addToOrder('햄버거', 5900)">
-                    <img src="https://via.placeholder.com/150x150?text=햄버거" alt="햄버거">
-                    <p>햄버거</p>
-                    <p>₩5,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('피자', 8900)">
-                    <img src="https://via.placeholder.com/150x150?text=피자" alt="피자">
-                    <p>피자</p>
-                    <p>₩8,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('샐러드', 4900)">
-                    <img src="https://via.placeholder.com/150x150?text=샐러드" alt="샐러드">
-                    <p>샐러드</p>
-                    <p>₩4,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('콜라', 1900)">
-                    <img src="https://via.placeholder.com/150x150?text=콜라" alt="콜라">
-                    <p>콜라</p>
-                    <p>₩1,900</p>
-                </div>
-            </div>
-            <div class="menu">
-                <div class="menu-item" onclick="addToOrder('햄버거', 5900)">
-                    <img src="https://via.placeholder.com/150x150?text=햄버거" alt="햄버거">
-                    <p>햄버거</p>
-                    <p>₩5,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('피자', 8900)">
-                    <img src="https://via.placeholder.com/150x150?text=피자" alt="피자">
-                    <p>피자</p>
-                    <p>₩8,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('샐러드', 4900)">
-                    <img src="https://via.placeholder.com/150x150?text=샐러드" alt="샐러드">
-                    <p>샐러드</p>
-                    <p>₩4,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('콜라', 1900)">
-                    <img src="https://via.placeholder.com/150x150?text=콜라" alt="콜라">
-                    <p>콜라</p>
-                    <p>₩1,900</p>
-                </div>
-            </div>
-            <div class="menu">
-                <div class="menu-item" onclick="addToOrder('햄버거', 5900)">
-                    <img src="https://via.placeholder.com/150x150?text=햄버거" alt="햄버거">
-                    <p>햄버거</p>
-                    <p>₩5,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('피자', 8900)">
-                    <img src="https://via.placeholder.com/150x150?text=피자" alt="피자">
-                    <p>피자</p>
-                    <p>₩8,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('샐러드', 4900)">
-                    <img src="https://via.placeholder.com/150x150?text=샐러드" alt="샐러드">
-                    <p>샐러드</p>
-                    <p>₩4,900</p>
-                </div>
-                <div class="menu-item" onclick="addToOrder('콜라', 1900)">
-                    <img src="https://via.placeholder.com/150x150?text=콜라" alt="콜라">
-                    <p>콜라</p>
-                    <p>₩1,900</p>
-                </div>
-            </div>
+<div class="container py-4" id="kiosk">
+    <header class="header text-center mb-4 rounded">
+        <h1 class="display-4">맛있는 식당</h1>
+        <p class="subtitle">오늘도 맛있는 한 끼</p>
+    </header>
+    <div class="dummy-space"></div>
+    <nav class="mb-4">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="bi bi-grid-3x3-gap-fill"></i> 전체</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-egg-fried"></i> 면</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-cup-straw"></i> 분식</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-fire"></i> 찌개/국</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- 더미 공간 -->
 
-            <div class="order-summary">
-                <h2>주문 요약</h2>
-                <ul id="order-list">
-                    <!-- 주문 내역 표시 -->
-                </ul>
-                <p>총합: ₩<span id="total-price">0</span></p>
-                <button onclick="completeOrder()">주문 완료</button>
+    <main class="menu-container">
+        <div class="menu-grid">
+            <!-- 메뉴 항목 렌더링 -->
+            <div class="card h-100 menu-item"
+                 th:each="menu : ${allKiosks}"
+                 th:data-id="${menu.id}"
+                 th:data-name="${menu.name}"
+                 th:data-price="${menu.price}"> <!-- 가격은 임의로 지정 -->
+                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
+                     class="card-img-top"
+                     th:alt="${menu.name}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
+                    <p class="card-text" th:text="${menu.price}"></p>
+                </div>
             </div>
         </div>
-        
+    </main>
+
+    <!-- 메뉴 옵션 모달 -->
+    <div class="modal fade" id="menuOptionsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="menuOptionModalTitle">메뉴 옵션</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-menu-options">
+                        <h6>토핑 선택</h6>
+                        <div class="option-item">
+                            <div>
+                                <input type="checkbox" id="topping1" name="toppings" value="500">
+                                <label for="topping1">치즈 추가 (+500원)</label>
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div>
+                                <input type="checkbox" id="topping2" name="toppings" value="1000">
+                                <label for="topping2">참치 추가 (+1,000원)</label>
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div>
+                                <input type="checkbox" id="topping3" name="toppings" value="500">
+                                <label for="topping3">김치 추가 (+500원)</label>
+                            </div>
+                        </div>
+
+                        <h6 class="mt-3">추가 옵션</h6>
+                        <div class="option-item">
+                            <div>
+                                <input type="checkbox" id="napkin" name="extras">
+                                <label for="napkin">물티슈 (+100원)</label>
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div>
+                                <label for="quantity">수량</label>
+                                <input type="number" id="quantity" value="1" min="1" max="10"
+                                       class="form-control w-25 d-inline-block ms-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" id="addToCartBtn">장바구니 추가</button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- 장바구니 모달 -->
+
+
+    <div id="cartSidebar">
+        <h4 class="mb-4">장바구니</h4>
+        <div id="cartItemsContainer">
+            <!-- 장바구니 아이템 동적 추가 -->
+        </div>
+        <div class="total-price mt-3" id="cartTotalPrice">총 금액: 0원</div>
+        <button class="btn btn-success w-100 mt-3" id="orderConfirmBtn">주문 확정</button>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <footer>
+        <button class="btn btn-lg btn-success order-button">
+            <i class="bi bi-cart-check"></i> 주문하기
+        </button>
+    </footer>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+
     <script>
-        let order = [];
-        let totalPrice = 0;
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll(".nav-link");
+        const menuItems = document.querySelectorAll(".menu-item");
 
-        function addToOrder(item, price) {
-            order.push({ item, price });
-            totalPrice += price;
-            updateOrderSummary();
-        }
+        tabs.forEach(tab => {
+            tab.addEventListener("click", function () {
+                const category = this.textContent.trim();
+                tabs.forEach(t => t.classList.remove("active"));
+                this.classList.add("active");
 
-        function updateOrderSummary() {
-            const orderList = document.getElementById('order-list');
-            orderList.innerHTML = '';
-            order.forEach((orderItem, index) => {
-                const li = document.createElement('li');
-                li.textContent = `${orderItem.item} - ₩${orderItem.price.toLocaleString()}`;
-                orderList.appendChild(li);
+                menuItems.forEach(item => {
+                    const itemCategory = item.dataset.category;
+                    item.style.display = category === "전체" || itemCategory === category ? "block" : "none";
+                });
             });
-            document.getElementById('total-price').textContent = totalPrice.toLocaleString();
+        });
+    });
+    
+    const Cart = {
+        items: [],
+        addItem(item) {
+            this.items.push(item);
+            this.updateCartView();
+        },
+        removeItem(index) {
+            this.items.splice(index, 1);
+            this.updateCartView();
+        },
+        calculateTotal() {
+            return this.items.reduce((total, item) => total + item.totalPrice, 0);
+        },
+        updateCartView() {
+            const cartContainer = document.getElementById('cartItemsContainer');
+            const totalPriceElement = document.getElementById('cartTotalPrice');
+
+            cartContainer.innerHTML = ''; // 장바구니 항목 초기화
+
+            this.items.forEach((item, index) => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.classList.add('cart-item');
+                cartItemElement.innerHTML = `
+                <div>
+                    <strong>${item.name}</strong>
+                    <br>수량: ${item.quantity}
+                    ${item.toppings.length > 0 ? `<br>토핑: ${item.toppings.join(', ')}` : ''}
+                </div>
+                <div>
+                    <span>${item.totalPrice.toLocaleString()}원</span>
+                    <button class="btn btn-sm btn-danger ms-2 remove-item" data-index="${index}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            `;
+                cartContainer.appendChild(cartItemElement);
+            });
+
+            totalPriceElement.textContent = `총 금액: ${this.calculateTotal().toLocaleString()}원`; // 총 금액 표시
+
+            cartContainer.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = e.currentTarget.dataset.index;
+                    this.removeItem(index);
+                });
+            });
+        }
+    };
+
+    const menuGrid = document.getElementById('menuGrid');
+    if (menuGrid) {
+        menuGrid.addEventListener('click', (e) => {
+            const menuItem = e.target.closest('.menu-item');
+            if (menuItem) {
+                const menuName = menuItem.dataset.name;
+                const menuPrice = parseInt(menuItem.dataset.price);
+                const menuModal = new bootstrap.Modal(document.getElementById('menuOptionsModal'));
+
+                document.getElementById('menuOptionModalTitle').textContent = `${menuName} 옵션 선택`;
+
+                document.getElementById('addToCartBtn').onclick = () => {
+                    const selectedToppings = Array.from(
+                        document.querySelectorAll('input[name="toppings"]:checked')
+                    ).map(el => el.nextElementSibling.textContent);
+
+                    const quantity = document.getElementById('quantity').value;
+                    const toppingPrice = Array.from(
+                        document.querySelectorAll('input[name="toppings"]:checked')
+                    ).reduce((sum, el) => sum + parseInt(el.value), 0);
+
+                    const napkinPrice = document.getElementById('napkin').checked ? 100 : 0;
+
+                    const totalPrice = (menuPrice + toppingPrice + napkinPrice) * quantity;
+
+                    Cart.addItem({
+                        name: menuName,
+                        quantity: quantity,
+                        toppings: selectedToppings,
+                        totalPrice: totalPrice
+                    });
+
+                    menuModal.hide();
+                };
+
+                menuModal.show();
+            }
+        });
+    }
+
+    const orderConfirmBtn = document.getElementById('orderConfirmBtn');
+    if (orderConfirmBtn) {
+        orderConfirmBtn.addEventListener('click', () => {
+            alert('주문이 완료되었습니다!');
+            Cart.items = [];
+            Cart.updateCartView();
+            cartSidebar.classList.remove('show');
+            cartOverlay.classList.remove('show');
+        });
+    }
+
+    function detectAgeGroup() {
+        const ageGroups = ['', 'elderly', 'child'];
+        return ageGroups[Math.floor(Math.random() * ageGroups.length)];
+    }
+
+
+    function setupChildModeScroll() {
+        const menuGrid = document.querySelector('.child .menu-grid');
+        if (!menuGrid) return;
+
+        let isScrolling = false;
+        let startX;
+        let scrollLeft;
+
+        menuGrid.addEventListener('mousedown', handleDragStart);
+        menuGrid.addEventListener('touchstart', handleDragStart);
+
+        menuGrid.addEventListener('mousemove', handleDragMove);
+        menuGrid.addEventListener('touchmove', handleDragMove);
+
+        menuGrid.addEventListener('mouseup', handleDragEnd);
+        menuGrid.addEventListener('mouseleave', handleDragEnd);
+        menuGrid.addEventListener('touchend', handleDragEnd);
+
+        function handleDragStart(e) {
+            isScrolling = true;
+            startX = e.type === 'touchstart' ? e.touches[0].pageX : e.pageX;
+            scrollLeft = menuGrid.scrollLeft;
         }
 
-        function completeOrder() {
-            if (order.length === 0) {
-                alert('주문 내역이 없습니다!');
-                return;
-            }
-            alert('주문이 완료되었습니다. 감사합니다!');
-            order = [];
-            totalPrice = 0;
-            updateOrderSummary();
+        function handleDragMove(e) {
+            if (!isScrolling) return;
+            e.preventDefault();
+            const x = e.type === 'touchmove' ? e.touches[0].pageX : e.pageX;
+            const walk = (x - startX) * 2;
+            menuGrid.scrollLeft = scrollLeft - walk;
         }
-    </script>
+
+        function handleDragEnd() {
+            isScrolling = false;
+        }
+    }
+
+    function updateKioskUI() {
+        const kiosk = document.getElementById('kiosk');
+        const ageGroup = detectAgeGroup();
+
+        kiosk.classList.remove('elderly', 'child');
+        if (ageGroup) {
+            kiosk.classList.add(ageGroup);
+
+            if (ageGroup === 'child') {
+                setupChildModeScroll();
+            }
+        }
+    }
+    document.addEventListener('DOMContentLoaded', updateKioskUI);
+    setInterval(updateKioskUI, 5000);
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartOverlay = document.querySelector('.cart-overlay');
+        const orderButton = document.querySelector('.order-button');
+
+        if (orderButton) {
+            orderButton.addEventListener('click', function() {
+                cartSidebar.classList.add('show');
+                cartOverlay.classList.add('show');
+            });
+        }
+
+        // 장바구니 오버레이 클릭 시 닫기
+        cartOverlay.addEventListener('click', function() {
+            cartSidebar.classList.remove('show');
+            cartOverlay.classList.remove('show');
+        });
+
+
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const menuName = this.querySelector('.card-title').textContent;
+                const menuPrice = parseInt(this.querySelector('.card-text').textContent.replace('원', '').replace(',', ''));
+
+                document.getElementById('menuOptionModalTitle').textContent = `${menuName} 옵션 선택`;
+
+                const addToCartBtn = document.getElementById('addToCartBtn');
+                addToCartBtn.onclick = null;
+                addToCartBtn.onclick = function () {
+                    const selectedToppings = Array.from(
+                        document.querySelectorAll('input[name="toppings"]:checked')
+                    ).map(el => el.nextElementSibling.textContent);
+
+                    const quantity = document.getElementById('quantity').value;
+                    const toppingPrice = Array.from(
+                        document.querySelectorAll('input[name="toppings"]:checked')
+                    ).reduce((sum, el) => sum + parseInt(el.value), 0);
+
+                    const napkinPrice = document.getElementById('napkin').checked ? 100 : 0;
+                    const totalPrice = (menuPrice + toppingPrice + napkinPrice) * quantity;
+
+                    Cart.addItem({
+                        name: menuName,
+                        quantity: quantity,
+                        toppings: selectedToppings,
+                        totalPrice: totalPrice
+                    });
+
+                    new bootstrap.Modal(document.getElementById('menuOptionsModal')).hide();
+                };
+
+                new bootstrap.Modal(document.getElementById('menuOptionsModal')).show();
+            });
+        });
+    });
+
+    setInterval(function() {
+        const adjustModalForAgeGroup = document.querySelector('script[data-adjust-modal]');
+        if (adjustModalForAgeGroup) {
+            adjustModalForAgeGroup.textContent = '';
+        }
+    }, 5000);
+
+
+
+
+    function updateBannerDesign() {
+        const kiosk = document.getElementById('kiosk');
+        const ageGroup = detectAgeGroup(); // 기존 age group detection 함수 사용
+
+        // 기존 배너 디자인 초기화
+        const header = document.querySelector('.header');
+
+        // 연령대별 특별 디자인 적용
+        if (ageGroup === 'elderly') {
+            header.classList.add('elderly');
+        } else if (ageGroup === 'child') {
+            header.classList.add('child');
+        }
+    }
+
+    // 페이지 로드 시 및 주기적으로 배너 디자인 업데이트
+    document.addEventListener('DOMContentLoaded', updateBannerDesign);
+    setInterval(updateBannerDesign, 5000);
+
+
+</script>
 </body>
 </html>
