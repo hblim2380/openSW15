@@ -19,16 +19,17 @@
     }
 
     .header {
-        background: var(--primary-color);
+        background: black;
         color: var(--text-color);
         text-align: center;
         border-radius: 15px;
     }
 
     .nav-pills .nav-link {
-        color: var(--text-color);
-        background: var(--highlight-color);
+        color: black;
+        background: #ffffff;
         transition: all 0.3s;
+        border: 2px solid black; 
     }
 
     .nav-pills .nav-link.active {
@@ -40,7 +41,7 @@
         height: 200px;
         object-fit: cover;
     }
-    
+
         body {
             font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
             background-color: #f8f9fa;
@@ -57,14 +58,14 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #4a89dc, #5c97bc);
+            background: linear-gradient(135deg, #1b1b1b, #ffcc00);
             color: white;
             padding: 50px 0;
             position: relative;
             text-align: center;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(74, 137, 220, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .header::before {
@@ -121,9 +122,8 @@
 
         .child .header h1 {
             font-size: 2.5rem;
-            color: #ffeb3b;
+            color: #ffffff;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            background: linear-gradient(to right, #ffeb3b, #ffc107);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -134,12 +134,11 @@
         }
 
         .nav-pills {
-            background-color: #f4f7f9;
-            border-radius: 50px;
+            border-radius: 5px;
             padding: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
+            max-width: 1000px;
             margin: 0 auto;
+            gap: 10px;
         }
 
         .nav {
@@ -149,7 +148,7 @@
         .nav-pills .nav-link {
             color: #2c3e50;
             margin: 0 5px;
-            border-radius: 50px;
+            border-radius: 20px;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -165,10 +164,10 @@
         }
 
         .nav-pills .nav-link.active {
-            background-color: #4a89dc;
+            background-color: black;
             color: white;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(74, 137, 220, 0.3);
+            box-shadow: 0 4px 15px gray;
         }
 
         .nav-pills .nav-link.active i {
@@ -177,8 +176,9 @@
         }
 
         .nav-pills .nav-link:not(.active):hover {
-            background-color: rgba(52, 152, 219, 0.1);
-            color: #3498db;
+            background-color: gray;
+            color: white;
+            border: none;
         }
 
         .nav-pills .nav-link:not(.active):hover i {
@@ -484,6 +484,18 @@
 
 .input-group .btn:active {
     background-color: #e0e0e0; /* 버튼 활성화 시 배경색 */
+}
+
+.input-group .btn-outline-dark, .btn-outline-dark:focus {
+    background-color: gainsboro;
+    border-color: black; /* 테두리 색상 */
+    color: black; /* 텍스트 색상 */
+    box-shadow: none;
+}
+
+.input-group .btn-outline-dark:hover {
+    background-color: black; /* 호버 시 배경색 */
+    color: white; /* 호버 시 텍스트 색상 */
 }
 
 /* 숫자 조절 버튼 숨기기 (웹킷 브라우저: Chrome, Edge, Safari) */
