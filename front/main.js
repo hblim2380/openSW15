@@ -1,4 +1,7 @@
-    document.addEventListener("DOMContentLoaded", function () {
+const cartSidebar = document.getElementById('cartSidebar');
+const cartOverlay = document.querySelector('.cart-overlay');
+
+document.addEventListener("DOMContentLoaded", function () {
         const tabs = document.querySelectorAll(".nav-link");
         const menuItems = document.querySelectorAll(".menu-item");
 
@@ -105,16 +108,28 @@
         });
     }
 
+document.addEventListener('DOMContentLoaded', () => {
     const orderConfirmBtn = document.getElementById('orderConfirmBtn');
     if (orderConfirmBtn) {
         orderConfirmBtn.addEventListener('click', () => {
             alert('주문이 완료되었습니다!');
             Cart.items = [];
             Cart.updateCartView();
+
+             // 주문 창 초기화
+            document.querySelectorAll('input[name="toppings"]').forEach(input => {
+                input.checked = false;
+            });
+            document.getElementById('quantity').value = 1;
+            document.getElementById('napkin').checked = false;
+
+            // 장바구니 및 오버레이 숨기기
             cartSidebar.classList.remove('show');
             cartOverlay.classList.remove('show');
+            
         });
     }
+});
 
     function detectAgeGroup() {
         const ageGroups = ['', 'elderly', 'child'];
@@ -182,12 +197,17 @@
         const cartOverlay = document.querySelector('.cart-overlay');
         const orderButton = document.querySelector('.order-button');
 
-        if (orderButton) {
-            orderButton.addEventListener('click', function() {
-                cartSidebar.classList.add('show');
-                cartOverlay.classList.add('show');
-            });
-        }
+
+        // menuOptionsModal 닫힘 시 오버레이 제거
+        menuModalElement.addEventListener('hidden.bs.modal', () => {
+            if (cartOverlay.classList.contains('show')) {
+                cartOverlay.classList.remove('show'); // 오버레이 제거
+            }
+        });
+        orderButton.addEventListener('click', function() {
+            cartSidebar.classList.add('show');
+            cartOverlay.classList.add('show');
+        });
 
         // 장바구니 오버레이 클릭 시 닫기
         cartOverlay.addEventListener('click', function() {
@@ -276,4 +296,23 @@
         let value = parseInt(quantityInput.value, 10);
         quantityInput.value = value + 1;
     });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuModalElement = document.getElementById('menuOptionsModal');
+        const cartOverlay = document.querySelector('.cart-overlay');
+    
+        // 모달 닫힘 이벤트 처리
+        menuModalElement.addEventListener('hidden.bs.modal', () => {
+            cartOverlay.classList.remove('show'); // 클릭 차단 오버레이 제거
+        });
+    
+        // 주문 추가하기 버튼 클릭 이벤트
+        document.getElementById('addToCartBtn').onclick = () => {
+            const menuModal = bootstrap.Modal.getInstance(menuModalElement);
+            menuModal.hide(); // 모달 닫기
+            cartOverlay.classList.remove('show'); // 오버레이 제거
+        };
+    });
+    
+    
     
