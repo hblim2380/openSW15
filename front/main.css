@@ -187,7 +187,10 @@
 
         .menu-container {
             flex-grow: 1;
-            overflow-y: auto;
+            margin:10px;
+            padding: 20px 15px; /* 상하 20px, 좌우 15px 여유 공간 */
+            box-sizing: border-box; /* 패딩 포함 크기 계산 */
+            overflow-y: auto; /* 내용이 많으면 스크롤 활성화 */
         }
 
         .menu-grid {
@@ -205,7 +208,7 @@
 
         .menu-item:hover {
             transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 10px -10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .menu-item img {
@@ -259,7 +262,11 @@
 
         .child .dummy-space {
             display: block; /* 아이 모드에서만 더미 공간 활성화 */
-            height: 700px; /* 음식 컴포넌트를 아래로 내리기 위한 공간 */
+            height: 300px; /* 음식 컴포넌트를 아래로 내리기 위한 공간 */
+        }
+
+        .child .menu-container, .child .order-summary {
+            flex-shrink: 0; /* 메뉴와 주문내역의 크기는 줄지 않음 */
         }
 
         /* 노인 모드 */
@@ -282,8 +289,19 @@
         .child .menu-grid {
             display: flex;
             overflow-x: auto;
+            gap: 1rem; /* 카드 간 간격 */
+            padding: 10px 0; /* 상하 여백 */
             scroll-snap-type: x mandatory;
             padding-bottom: 20px;
+        }
+
+        .child .menu-grid::-webkit-scrollbar {
+            display: none; /* 스크롤바 숨김 */
+        }
+        
+        .child .menu-grid {
+            -ms-overflow-style: none; /* IE/Edge 스크롤바 숨김 */
+            scrollbar-width: none; /* Firefox 스크롤바 숨김 */
         }
 
         .child .menu-item {
@@ -300,6 +318,9 @@
             scrollbar-width: none;
         }
 
+        .child .menu-container, .child .order-summary {
+            flex-shrink: 0; /* 메뉴와 주문내역의 크기는 줄지 않음 */
+        }
         .modal-menu-options {
             background-color: #f9f9f9;
             padding: 20px;
@@ -532,5 +553,9 @@ input[type="number"] {
 
 /*스크롤바 숨기기*/
 html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-container::-webkit-scrollbar, body::-webkit-scrollbar {
     display: none;
 }
