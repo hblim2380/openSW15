@@ -342,6 +342,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateOrderPosition();
             });
         });
-    });
-    
-    
+    }); 

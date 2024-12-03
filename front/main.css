@@ -186,11 +186,23 @@
         }
 
         .menu-container {
+            max-height: 850px;
             flex-grow: 1;
             margin:10px;
             padding: 20px 15px; /* 상하 20px, 좌우 15px 여유 공간 */
             box-sizing: border-box; /* 패딩 포함 크기 계산 */
             overflow-y: auto; /* 내용이 많으면 스크롤 활성화 */
+        }
+
+        /* 스크롤바 숨기기 (웹킷 브라우저) */
+        .menu-container::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f9f9f9; /* 스크롤바 배경색 */
+        }
+
+        .menu-container::-webkit-scrollbar-thumb {
+            background-color: #ccc; /* 스크롤바 색상 */
+            border-radius: 4px;
         }
 
         .menu-grid {
@@ -263,7 +275,7 @@
 
         .child .dummy-space {
             display: block; /* 아이 모드에서만 더미 공간 활성화 */
-            height: 700px; /* 음식 컴포넌트를 아래로 내리기 위한 공간 */
+            height: 800px; /* 음식 컴포넌트를 아래로 내리기 위한 공간 */
         }
 
         .child .menu-container, .child .order-summary {
@@ -271,6 +283,10 @@
         }
 
         /* 노인 모드 */
+        .elderly .menu-container{
+            max-height: 600px;
+        }
+
         .elderly .menu-grid {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -291,9 +307,8 @@
             display: flex;
             overflow-x: auto;
             gap: 1rem; /* 카드 간 간격 */
-            padding: 10px 10px; /* 상하 여백 */
+            padding: 0px 10px; /* 상하 여백 */
             scroll-snap-type: x mandatory;
-            padding-bottom: 20px;
         }
         
         .child .menu-grid {
@@ -313,6 +328,9 @@
         .child .menu-container {
             -ms-overflow-style: none;
             scrollbar-width: none;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            padding: 0px 15px;
         }
 
         .child .menu-container, .child .order-summary {
@@ -403,7 +421,7 @@
 
         /* 어린이 모드 추가 스타일 */
         .child .menu-container {
-            margin-bottom: 100px;
+            margin-bottom: 0px;
         }
 
         .child .menu-grid {
@@ -534,12 +552,33 @@ input[type="number"] {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
+    margin: 5px 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.order-summary::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9f9; /* 스크롤바 배경색 */
+}
+
+.order-summary::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* 스크롤바 색상 */
+    border-radius: 4px;
+}
+
 #cartItemsContainer {
-    max-height: 150px; /* 최대 높이 설정 */
+    max-height: 250px; /* 최대 높이 설정 */
     overflow-y: auto; /* 스크롤 활성화 */
+}
+
+#cartItemsContainer::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9f9; /* 스크롤바 배경색 */
+}
+
+#cartItemsContainer::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* 스크롤바 색상 */
+    border-radius: 4px;
 }
 
 .total-price {
@@ -559,7 +598,11 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 /* 어린이 모드 - 주문내역 상단 고정 */
 .child .order-summary {
+    max-height: 850px; /* 최대 높이 */
+    overflow-y: hidden; /* 높이를 초과하면 스크롤 활성화 */
     position: fixed;
+    display: flex;
+    flex-direction: column;
     top: 0;
     left: 0;
     right: 0;
@@ -567,6 +610,24 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
     background: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
+}
+
+/* 주문 항목 컨테이너 스타일 */
+.child #cartItemsContainer {
+    max-height: 800px;
+    flex-grow: 1; /* 내부에서 높이 조정 */
+    overflow-y: auto; /* 높이를 초과하면 스크롤 활성화 */
+}
+
+/* 스크롤바 숨기기 (웹킷 브라우저) */
+.child #cartItemsContainer::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9f9; /* 스크롤바 배경색 */
+}
+
+.child #cartItemsContainer::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* 스크롤바 색상 */
+    border-radius: 4px;
 }
 
 /* 어린이 모드 - 주문하기 버튼 하단 고정 */
@@ -592,4 +653,3 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .menu-container {
     margin-bottom: 100px; /* 주문하기 버튼 여백 */
 }
-
