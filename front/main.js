@@ -187,10 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    document.addEventListener('DOMContentLoaded', updateKioskUI);
-    setInterval(updateKioskUI, 5000);
-
-
 
     document.addEventListener('DOMContentLoaded', function () {
         const cartSidebar = document.getElementById('cartSidebar');
@@ -279,10 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 페이지 로드 시 및 주기적으로 배너 디자인 업데이트
-    document.addEventListener('DOMContentLoaded', updateBannerDesign);
-    setInterval(updateBannerDesign, 5000);
-
     document.getElementById('decreaseBtn').addEventListener('click', () => {
         const quantityInput = document.getElementById('quantity');
         let value = parseInt(quantityInput.value, 10);
@@ -314,5 +306,42 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
     
+    document.addEventListener('DOMContentLoaded', () => {
+        const kiosk = document.getElementById('kiosk');
+        const orderSummary = document.getElementById('orderSummary');
+        const orderButtonContainer = document.getElementById('orderButtonContainer');
+        const menuTabs = document.querySelector('nav'); // 메뉴 탭
+        const menuGrid = document.querySelector('.menu-grid'); // 메뉴 목록
+    
+        function updateOrderPosition() {
+            if (kiosk.classList.contains('child')) {
+                // 어린이 모드: 주문내역 상단, 주문하기 버튼 하단 고정
+                orderSummary.classList.add('fixed');
+                orderButtonContainer.classList.add('fixed');
+    
+                // 주문내역은 메뉴탭 위로 이동
+                menuTabs.parentNode.insertBefore(orderSummary, menuTabs);
+            } else {
+                // 성인 및 노인 모드: 주문내역과 버튼을 메뉴 밑에 배치
+                orderSummary.classList.remove('fixed');
+                orderButtonContainer.classList.remove('fixed');
+    
+                // 주문내역과 버튼을 메뉴 밑으로 이동
+                menuGrid.parentNode.appendChild(orderSummary);
+                menuGrid.parentNode.appendChild(orderButtonContainer);
+            }
+        }
+    
+        // 초기 위치 설정
+        updateOrderPosition();
+    
+        // 테마 버튼 클릭 시 위치 업데이트
+        const themeButtons = document.querySelectorAll('.theme-buttons button');
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                updateOrderPosition();
+            });
+        });
+    });
     
     

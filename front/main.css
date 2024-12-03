@@ -196,6 +196,7 @@
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            padding: 10px;
             gap: 1rem;
         }
 
@@ -207,8 +208,8 @@
         }
 
         .menu-item:hover {
-            transform: scale(1.1);
-            box-shadow: 10px -10px 20px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.507);
         }
 
         .menu-item img {
@@ -218,7 +219,7 @@
         }
 
         .menu-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
 
@@ -262,7 +263,7 @@
 
         .child .dummy-space {
             display: block; /* 아이 모드에서만 더미 공간 활성화 */
-            height: 300px; /* 음식 컴포넌트를 아래로 내리기 위한 공간 */
+            height: 700px; /* 음식 컴포넌트를 아래로 내리기 위한 공간 */
         }
 
         .child .menu-container, .child .order-summary {
@@ -290,13 +291,9 @@
             display: flex;
             overflow-x: auto;
             gap: 1rem; /* 카드 간 간격 */
-            padding: 10px 0; /* 상하 여백 */
+            padding: 10px 10px; /* 상하 여백 */
             scroll-snap-type: x mandatory;
             padding-bottom: 20px;
-        }
-
-        .child .menu-grid::-webkit-scrollbar {
-            display: none; /* 스크롤바 숨김 */
         }
         
         .child .menu-grid {
@@ -559,3 +556,40 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .menu-container::-webkit-scrollbar, body::-webkit-scrollbar {
     display: none;
 }
+
+/* 어린이 모드 - 주문내역 상단 고정 */
+.child .order-summary {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+}
+
+/* 어린이 모드 - 주문하기 버튼 하단 고정 */
+.child .order-button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px 20px;
+}
+
+/* 기본 스타일 (성인 및 노인 모드) */
+.order-summary,
+.order-button-container {
+    position: static; /* 기본 위치 */
+    margin-top: 20px;
+}
+
+/* 메뉴 컨테이너 여백 조정 */
+.menu-container {
+    margin-bottom: 100px; /* 주문하기 버튼 여백 */
+}
+

@@ -38,10 +38,6 @@
     </script>
     <!--여기까지 나이 변경 버튼-->
     
-    <header class="header text-center mb-4 rounded">
-        <h1 class="display-4">맛있는 식당</h1>
-        <p class="subtitle">오늘도 맛있는 한 끼</p>
-    </header>
     <div class="dummy-space"></div>
     <nav class="mb-4">
         <ul class="nav nav-pills nav-fill">
@@ -78,6 +74,71 @@
                     <p class="card-text" th:text="${menu.price}"></p>
                 </div>
             </div>
+            <div class="card h-100 menu-item"
+                 th:each="menu : ${allKiosks}"
+                 th:data-id="${menu.id}"
+                 th:data-name="${menu.name}"
+                 th:data-price="${menu.price}">
+                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
+                     class="card-img-top"
+                     th:alt="${menu.name}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
+                    <p class="card-text" th:text="${menu.price}"></p>
+                </div>
+            </div>
+            <div class="card h-100 menu-item"
+                 th:each="menu : ${allKiosks}"
+                 th:data-id="${menu.id}"
+                 th:data-name="${menu.name}"
+                 th:data-price="${menu.price}">
+                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
+                     class="card-img-top"
+                     th:alt="${menu.name}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
+                    <p class="card-text" th:text="${menu.price}"></p>
+                </div>
+            </div>
+            <div class="card h-100 menu-item"
+                 th:each="menu : ${allKiosks}"
+                 th:data-id="${menu.id}"
+                 th:data-name="${menu.name}"
+                 th:data-price="${menu.price}">
+                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
+                     class="card-img-top"
+                     th:alt="${menu.name}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
+                    <p class="card-text" th:text="${menu.price}"></p>
+                </div>
+            </div>
+            <div class="card h-100 menu-item"
+                 th:each="menu : ${allKiosks}"
+                 th:data-id="${menu.id}"
+                 th:data-name="${menu.name}"
+                 th:data-price="${menu.price}">
+                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
+                     class="card-img-top"
+                     th:alt="${menu.name}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
+                    <p class="card-text" th:text="${menu.price}"></p>
+                </div>
+            </div>
+            <div class="card h-100 menu-item"
+                 th:each="menu : ${allKiosks}"
+                 th:data-id="${menu.id}"
+                 th:data-name="${menu.name}"
+                 th:data-price="${menu.price}">
+                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
+                     class="card-img-top"
+                     th:alt="${menu.name}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
+                    <p class="card-text" th:text="${menu.price}"></p>
+                </div>
+            </div>
         </div>
     </main>
     
@@ -88,6 +149,8 @@
             <!-- 주문 내역 동적 추가 -->
         </div>
         <div class="total-price mt-3" id="cartTotalPrice">총 금액: 0원</div>
+    </div>
+    <div class="order-button-container">
         <button class="btn btn-dark w-100 mt-3" id="orderConfirmBtn">
             <i class="bi bi-cart-check"></i> 주문하기
         </button>
@@ -148,20 +211,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- 장바구니 모달 -->
-
-
-    <div id="cartSidebar">
-        <h4 class="mb-4">장바구니</h4>
-        <div id="cartItemsContainer">
-            <!-- 장바구니 아이템 동적 추가 -->
-        </div>
-        <div class="total-price mt-3" id="cartTotalPrice">총 금액: 0원</div>
-        <button class="btn btn-success w-100 mt-3" id="orderConfirmBtn">
-            <i class="bi bi-cart-check"></i>주문하기 
-        </button>
     </div>
     <div class="cart-overlay"></div>
 </div>
