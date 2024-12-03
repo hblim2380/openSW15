@@ -452,18 +452,17 @@
 
     <main class="menu-container">
         <div class="menu-grid">
-            <!-- 메뉴 항목 렌더링 -->
             <div class="card h-100 menu-item"
                  th:each="menu : ${allKiosks}"
                  th:data-id="${menu.id}"
                  th:data-name="${menu.name}"
-                 th:data-price="${menu.price}"> <!-- 가격은 임의로 지정 -->
+                 th:data-price="${menu.price}">
                 <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
                      class="card-img-top"
                      th:alt="${menu.name}">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
-                    <p class="card-text" th:text="${menu.price}"></p>
+                    <p class="card-text" th:text="${menu.price} + '원'"></p>
                 </div>
             </div>
         </div>
@@ -517,7 +516,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary" id="addToCartBtn">장바구니 추가</button>
+                    <button type="submit" class="btn btn-primary" id="addToCartBtn">장바구니 추가</button>
                 </div>
             </div>
         </div>
@@ -532,12 +531,13 @@
             <!-- 장바구니 아이템 동적 추가 -->
         </div>
         <div class="total-price mt-3" id="cartTotalPrice">총 금액: 0원</div>
-        <button class="btn btn-success w-100 mt-3" id="orderConfirmBtn">주문 확정</button>
+        <button type="submit" class="btn btn-success w-100 mt-3" id="orderConfirmBtn">주문 확정</button>
     </div>
     <div class="cart-overlay"></div>
 
     <footer>
-        <button class="btn btn-lg btn-success order-button">
+        <input type="hidden" name="orderDetails" id="orderDetails">
+        <button type="submit" class="btn btn-lg btn-success order-button">
             <i class="bi bi-cart-check"></i> 주문하기
         </button>
     </footer>
@@ -548,11 +548,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 <script>
+    console.log(bootstrap.Modal); // undefined가 출력되면 JS 파일 문제
+
     const Cart = {
         items: [],
         addItem(item) {
             this.items.push(item);
             this.updateCartView();
+        },
+        generateOrderDetails() {
+            return JSON.stringify({items: this.items});
         },
         removeItem(index) {
             this.items.splice(index, 1);
@@ -597,56 +602,40 @@
         }
     };
 
-    const menuGrid = document.getElementById('menuGrid');
-    if (menuGrid) {
-        menuGrid.addEventListener('click', (e) => {
-            const menuItem = e.target.closest('.menu-item');
-            if (menuItem) {
-                const menuName = menuItem.dataset.name;
-                const menuPrice = parseInt(menuItem.dataset.price);
-                const menuModal = new bootstrap.Modal(document.getElementById('menuOptionsModal'));
+    const orderConfirmBtn = document.getElementById('orderConfirmBtn');
+    if (orderConfirmBtn) {
+        orderConfirmBtn.addEventListener('click', async (e) => {
+            e.preventDefault(); // 기본 폼 제출 동작 방지
 
-                document.getElementById('menuOptionModalTitle').textContent = `${menuName} 옵션 선택`;
+            const orderDetails = Cart.generateOrderDetails();
+            console.log(orderDetails);
 
-                document.getElementById('addToCartBtn').onclick = () => {
-                    const selectedToppings = Array.from(
-                        document.querySelectorAll('input[name="toppings"]:checked')
-                    ).map(el => el.nextElementSibling.textContent);
+            try {
+                const response = await fetch('/page/order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: orderDetails,
+                });
 
-                    const quantity = document.getElementById('quantity').value;
-                    const toppingPrice = Array.from(
-                        document.querySelectorAll('input[name="toppings"]:checked')
-                    ).reduce((sum, el) => sum + parseInt(el.value), 0);
-
-                    const napkinPrice = document.getElementById('napkin').checked ? 100 : 0;
-
-                    const totalPrice = (menuPrice + toppingPrice + napkinPrice) * quantity;
-
-                    Cart.addItem({
-                        name: menuName,
-                        quantity: quantity,
-                        toppings: selectedToppings,
-                        totalPrice: totalPrice
-                    });
-
-                    menuModal.hide();
-                };
-
-                menuModal.show();
+                if (response.ok) {
+                    alert('주문이 성공적으로 접수되었습니다!');
+                    Cart.items = []; // 장바구니 비우기
+                    Cart.updateCartView(); // 장바구니 UI 업데이트
+                } else {
+                    alert('주문 처리 중 문제가 발생했습니다. 다시 시도해주세요.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('서버와의 통신 중 오류가 발생했습니다.');
             }
         });
     }
 
-    const orderConfirmBtn = document.getElementById('orderConfirmBtn');
-    if (orderConfirmBtn) {
-        orderConfirmBtn.addEventListener('click', () => {
-            alert('주문이 완료되었습니다!');
-            Cart.items = [];
-            Cart.updateCartView();
-            cartSidebar.classList.remove('show');
-            cartOverlay.classList.remove('show');
-        });
-    }
+
+
+
 
     function detectAgeGroup() {
         const ageGroups = ['', 'elderly', 'child'];
@@ -731,13 +720,14 @@
         const menuItems = document.querySelectorAll('.menu-item');
         menuItems.forEach(item => {
             item.addEventListener('click', function () {
+                const menuId = this.getAttribute('data-id');
                 const menuName = this.querySelector('.card-title').textContent;
                 const menuPrice = parseInt(this.querySelector('.card-text').textContent.replace('원', '').replace(',', ''));
 
                 document.getElementById('menuOptionModalTitle').textContent = `${menuName} 옵션 선택`;
 
                 const addToCartBtn = document.getElementById('addToCartBtn');
-                addToCartBtn.onclick = null;
+                addToCartBtn.onclick = null; // 기존 이벤트 핸들러 제거
                 addToCartBtn.onclick = function () {
                     const selectedToppings = Array.from(
                         document.querySelectorAll('input[name="toppings"]:checked')
@@ -752,18 +742,26 @@
                     const totalPrice = (menuPrice + toppingPrice + napkinPrice) * quantity;
 
                     Cart.addItem({
+                        menuId: menuId,
                         name: menuName,
                         quantity: quantity,
                         toppings: selectedToppings,
                         totalPrice: totalPrice
                     });
 
-                    new bootstrap.Modal(document.getElementById('menuOptionsModal')).hide();
+                    // 모달 닫기
+                    const menuModal = bootstrap.Modal.getInstance(document.getElementById('menuOptionsModal'));
+                    if (menuModal) {
+                        menuModal.hide();
+                    }
                 };
 
-                new bootstrap.Modal(document.getElementById('menuOptionsModal')).show();
+                // 모달 표시
+                const menuModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('menuOptionsModal'));
+                menuModal.show();
             });
         });
+;
     });
 
     setInterval(function() {
@@ -772,8 +770,6 @@
             adjustModalForAgeGroup.textContent = '';
         }
     }, 5000);
-
-
 
 
     function updateBannerDesign() {
