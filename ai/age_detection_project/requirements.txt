@@ -4,3 +4,4 @@ deep_sort_realtime==0.3.4
 numpy==1.23.1
 torch==2.0.0
 absl-py==1.4.0
+Flask==2.3.2
