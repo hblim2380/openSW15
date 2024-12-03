@@ -11,19 +11,24 @@ data:
         filename VARCHAR(100) NOT NULL
     );
 
-    CREATE TABLE "Order" (
+    CREATE TABLE orders (
         id SERIAL PRIMARY KEY,
-        time TIMESTAMP NOT NULL,
+        time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         total INT NOT NULL
     );
 
-    CREATE TABLE OrderMenu (
-        id SERIAL PRIMARY KEY,
-        menu_id INT NOT NULL,
-        order_id INT NOT NULL,
-        amount INT NOT NULL,
-        FOREIGN KEY (menu_id) REFERENCES Menu (id),
-        FOREIGN KEY (order_id) REFERENCES "Order" (id)
+    CREATE TABLE OrderDetail (
+    	id SERIAL PRIMARY KEY,         -- 주문 상세 ID
+    	order_id INT NOT NULL,         -- 외래 키 (주문 ID)
+    	menu_id INT NOT NULL,          -- 외래 키 (메뉴 ID)
+    	amount INT NOT NULL,           -- 수량
+    	price INT NOT NULL,            -- 총 금액 (옵션 포함)
+    	add_cheese BOOLEAN DEFAULT FALSE, -- 치즈 추가
+    	add_tuna BOOLEAN DEFAULT FALSE,   -- 참치 추가
+    	add_kimchi BOOLEAN DEFAULT FALSE, -- 김치 추가
+    	napkin BOOLEAN DEFAULT FALSE,     -- 물티슈 여부
+    	FOREIGN KEY (order_id) REFERENCES orders (id),
+    	FOREIGN KEY (menu_id) REFERENCES Menu (id)
     );
 
     INSERT INTO Menu (name, price, filename) VALUES
