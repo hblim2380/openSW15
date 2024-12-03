@@ -47,71 +47,6 @@
                     <p class="card-text" th:text="${menu.price}"></p>
                 </div>
             </div>
-            <div class="card h-100 menu-item"
-                 th:each="menu : ${allKiosks}"
-                 th:data-id="${menu.id}"
-                 th:data-name="${menu.name}"
-                 th:data-price="${menu.price}">
-                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
-                     class="card-img-top"
-                     th:alt="${menu.name}">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
-                    <p class="card-text" th:text="${menu.price}"></p>
-                </div>
-            </div>
-            <div class="card h-100 menu-item"
-                 th:each="menu : ${allKiosks}"
-                 th:data-id="${menu.id}"
-                 th:data-name="${menu.name}"
-                 th:data-price="${menu.price}">
-                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
-                     class="card-img-top"
-                     th:alt="${menu.name}">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
-                    <p class="card-text" th:text="${menu.price}"></p>
-                </div>
-            </div>
-            <div class="card h-100 menu-item"
-                 th:each="menu : ${allKiosks}"
-                 th:data-id="${menu.id}"
-                 th:data-name="${menu.name}"
-                 th:data-price="${menu.price}">
-                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
-                     class="card-img-top"
-                     th:alt="${menu.name}">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
-                    <p class="card-text" th:text="${menu.price}"></p>
-                </div>
-            </div>
-            <div class="card h-100 menu-item"
-                 th:each="menu : ${allKiosks}"
-                 th:data-id="${menu.id}"
-                 th:data-name="${menu.name}"
-                 th:data-price="${menu.price}">
-                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
-                     class="card-img-top"
-                     th:alt="${menu.name}">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
-                    <p class="card-text" th:text="${menu.price}"></p>
-                </div>
-            </div>
-            <div class="card h-100 menu-item"
-                 th:each="menu : ${allKiosks}"
-                 th:data-id="${menu.id}"
-                 th:data-name="${menu.name}"
-                 th:data-price="${menu.price}">
-                <img th:src="@{/picture/{filename}(filename=${menu.filename})}"
-                     class="card-img-top"
-                     th:alt="${menu.name}">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${menu.name}">메뉴 이름</h5>
-                    <p class="card-text" th:text="${menu.price}"></p>
-                </div>
-            </div>
         </div>
     </main>
     
@@ -180,33 +115,6 @@
                                 <button class="btn btn-outline-dark" id="increaseBtn">+</button>
                             </div>
                         </div>
-                        <!--임시로 추가-->
-                        <div class="theme-buttons text-center mb-3"> 
-                            <button class="btn btn-primary me-2" id="childThemeBtn">어린이</button>
-                            <button class="btn btn-secondary me-2" id="adultThemeBtn">어른</button>
-                            <button class="btn btn-dark" id="elderlyThemeBtn">노인</button>
-                        </div>    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const kiosk = document.getElementById('kiosk');
-    
-            // 버튼 요소 가져오기
-            const childThemeBtn = document.getElementById('childThemeBtn');
-            const adultThemeBtn = document.getElementById('adultThemeBtn');
-            const elderlyThemeBtn = document.getElementById('elderlyThemeBtn');
-    
-            // 테마 변경 함수
-            const changeTheme = (theme) => {
-                kiosk.className = `container py-4 ${theme}`;
-            };
-    
-            // 이벤트 리스너 설정
-            childThemeBtn.addEventListener('click', () => changeTheme('child'));
-            adultThemeBtn.addEventListener('click', () => changeTheme('adult'));
-            elderlyThemeBtn.addEventListener('click', () => changeTheme('elderly'));
-        });
-    </script>
-    <!--여기까지 나이 변경 버튼-->
                     </div>
                 </div>
                 <div class="modal-footer">
