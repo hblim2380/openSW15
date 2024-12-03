@@ -8,6 +8,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: hostpath # PVC와 일치시킴
   hostPath:
     path: /data/postgres
-
