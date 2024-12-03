@@ -312,12 +312,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const orderButtonContainer = document.getElementById('orderButtonContainer');
         const menuTabs = document.querySelector('nav'); // 메뉴 탭
         const menuGrid = document.querySelector('.menu-grid'); // 메뉴 목록
+        const fixedOrderContainer = document.querySelector('.fixed-order-container');
+        const dummySpace = document.querySelector('.dummy-order-space');
     
         function updateOrderPosition() {
             if (kiosk.classList.contains('child')) {
                 // 어린이 모드: 주문내역 상단, 주문하기 버튼 하단 고정
-                orderSummary.classList.add('fixed');
+                menuTabs.parentNode.insertBefore(orderSummary, menuTabs);
                 orderButtonContainer.classList.add('fixed');
+                dummyOrderSpace.classList.add('child');
+                fixedOrderContainer.classList.add('child');
     
                 // 주문내역은 메뉴탭 위로 이동
                 menuTabs.parentNode.insertBefore(orderSummary, menuTabs);
@@ -325,6 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 성인 및 노인 모드: 주문내역과 버튼을 메뉴 밑에 배치
                 orderSummary.classList.remove('fixed');
                 orderButtonContainer.classList.remove('fixed');
+                dummyOrderSpace.classList.remove('child');
+                fixedOrderContainer.classList.remove('child');
     
                 // 주문내역과 버튼을 메뉴 밑으로 이동
                 menuGrid.parentNode.appendChild(orderSummary);

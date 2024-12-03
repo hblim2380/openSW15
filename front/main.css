@@ -186,6 +186,7 @@
         }
 
         .menu-container {
+            height: 700px;
             max-height: 850px;
             flex-grow: 1;
             margin:10px;
@@ -441,6 +442,7 @@
         }
 
         .child .menu-container {
+            height: auto;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -548,6 +550,7 @@ input[type="number"] {
 
 /* 주문 내역 스타일 */
 .order-summary {
+    height: 300px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -567,7 +570,7 @@ input[type="number"] {
 }
 
 #cartItemsContainer {
-    max-height: 250px; /* 최대 높이 설정 */
+    max-height: 180px; /* 최대 높이 설정 */
     overflow-y: auto; /* 스크롤 활성화 */
 }
 
@@ -600,7 +603,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .child .order-summary {
     max-height: 850px; /* 최대 높이 */
     overflow-y: hidden; /* 높이를 초과하면 스크롤 활성화 */
-    position: fixed;
     display: flex;
     flex-direction: column;
     top: 0;
@@ -643,8 +645,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 /* 기본 스타일 (성인 및 노인 모드) */
-.order-summary,
-.order-button-container {
+.order-summary, .order-button-container {
     position: static; /* 기본 위치 */
     margin-top: 20px;
 }
@@ -652,4 +653,28 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 /* 메뉴 컨테이너 여백 조정 */
 .menu-container {
     margin-bottom: 100px; /* 주문하기 버튼 여백 */
+}
+
+.dummy-order-space{
+    height: 0px;
+    display: none;
+}
+
+.child .dummy-order-space {
+    height: 500px;
+    display: block;
+}
+
+.fixed-order-container {
+    position: static; /* 기본 위치 */
+    width: 100%;
+}
+
+.child .fixed-order-container {
+    position: fixed; /* 어린이 모드에서 고정 */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: white; /* 배경색 설정 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }

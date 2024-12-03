@@ -116,13 +116,18 @@
     </main>
     
     <!-- 주문 내역 -->
-    <div class="order-summary mt-4">
-        <h4>주문 내역</h4>
-        <div id="cartItemsContainer">
-            <!-- 주문 내역 동적 추가 -->
+    <div class="fixed-order-container">
+        <div class="dummy-order-space"></div>
+        <div class="order-summary mt-4">
+            <h4>주문 내역</h4>
+            <div id="cartItemsContainer">
+                <!-- 주문 내역 동적 추가 -->
+            </div>
+            <div class="total-price mt-3" id="cartTotalPrice">총 금액: 0원</div>
         </div>
-        <div class="total-price mt-3" id="cartTotalPrice">총 금액: 0원</div>
     </div>
+    
+    
     <div class="order-button-container">
         <button class="btn btn-dark w-100 mt-3" id="orderConfirmBtn">
             <i class="bi bi-cart-check"></i> 주문하기
