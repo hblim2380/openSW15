@@ -22,7 +22,7 @@ spring:
         format_sql: true
 
   profiles:
-    active: dev # ?? ??? ????
+    active: dev
 
 ---
 

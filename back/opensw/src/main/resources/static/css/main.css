@@ -1,0 +1,680 @@
+:root {
+    --background-color: #ffffff;
+    --primary-color: #87cefa; /* Light Sky Blue */
+    --text-color: #000000;
+    --highlight-color: #b0e0e6; /* Additional sky blue for highlights */
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+.container {
+    background-color: var(--background-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    color: var(--text-color);
+}
+
+.header {
+    background: black;
+    color: var(--text-color);
+    text-align: center;
+    border-radius: 15px;
+}
+
+.nav-pills .nav-link {
+    color: black;
+    background: #ffffff;
+    transition: all 0.3s;
+    border: 2px solid black;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.menu-grid .menu-item img {
+    height: 200px;
+    object-fit: cover;
+}
+
+body {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1024px; /* iPad Pro의 가로 너비 */
+    min-height: 1366px; /* iPad Pro의 세로 높이 */
+    margin: 0 auto; /* 화면 중앙 정렬 */
+    box-sizing: border-box; /* 여백 포함 크기 계산 */
+    background-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+}
+
+.header {
+    background: linear-gradient(135deg, #1b1b1b, #ffcc00);
+    color: white;
+    padding: 50px 0;
+    position: relative;
+    text-align: center;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    transform: skewX(-15deg);
+    z-index: 1;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    right: -50px;
+    height: 100px;
+    background: rgba(255,255,255,0.1);
+    transform: rotate(-5deg);
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.elderly .header h1 {
+    font-size: 3.5rem;
+    letter-spacing: -1px;
+}
+
+.elderly .header .subtitle {
+    font-size: 1.5rem;
+}
+
+.child .header h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.child .header .subtitle {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.nav-pills {
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.nav {
+    margin-top: 15px;
+}
+
+.nav-pills .nav-link {
+    color: #2c3e50;
+    margin: 0 5px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+}
+
+.nav-pills .nav-link i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 15px gray;
+}
+
+.nav-pills .nav-link.active i {
+    opacity: 1;
+    color: white;
+}
+
+.nav-pills .nav-link:not(.active):hover {
+    background-color: gray;
+    color: white;
+    border: none;
+}
+
+.nav-pills .nav-link:not(.active):hover i {
+    opacity: 1;
+}
+
+.menu-container {
+    height: 700px;
+    max-height: 850px;
+    flex-grow: 1;
+    margin:10px;
+    padding: 20px 15px; /* 상하 20px, 좌우 15px 여유 공간 */
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    overflow-y: auto; /* 내용이 많으면 스크롤 활성화 */
+}
+
+/* 스크롤바 숨기기 (웹킷 브라우저) */
+.menu-container::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9f9; /* 스크롤바 배경색 */
+}
+
+.menu-container::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* 스크롤바 색상 */
+    border-radius: 4px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+    gap: 1rem;
+}
+
+.menu-item {
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: none; /* 메뉴 아이템 그림자 제거 */
+    border: none; /* 메뉴 아이템 테두리 제거 */
+    overflow: hidden;;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.507);
+}
+
+.menu-item img {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover img {
+    transform: scale(1.05);
+}
+
+
+.card-body {
+    background-color: white;
+    text-align: center;
+}
+
+.card-title {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.card-text {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.order-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: #27ae60;
+    border: none;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+    transition: all 0.3s ease;
+}
+
+.order-button:hover {
+    background-color: #2ecc71;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 17px rgba(39, 174, 96, 0.4);
+}
+
+/* 더미 컴포넌트 */
+.dummy-space {
+    display: none; /* 기본적으로 더미 공간 숨기기 */
+}
+
+.child .dummy-space {
+    display: block; /* 아이 모드에서만 더미 공간 활성화 */
+    height: 800px; /* 음식 컴포넌트를 아래로 내리기 위한 공간 */
+}
+
+.child .menu-container, .child .order-summary {
+    flex-shrink: 0; /* 메뉴와 주문내역의 크기는 줄지 않음 */
+}
+
+/* 노인 모드 */
+.elderly .menu-container{
+    max-height: 600px;
+}
+
+.elderly .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.elderly .menu-item {
+    font-size: 2.2rem;
+}
+.elderly h5 {
+    font-size: 2.4rem;
+}
+
+/* 어린이 모드 */
+.child .menu-container {
+    margin-bottom: 20px; /* 여유 공간 확보 */
+}
+
+.child .menu-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem; /* 카드 간 간격 */
+    padding: 0px 10px; /* 상하 여백 */
+    scroll-snap-type: x mandatory;
+}
+
+.child .menu-grid {
+    -ms-overflow-style: none; /* IE/Edge 스크롤바 숨김 */
+    scrollbar-width: none; /* Firefox 스크롤바 숨김 */
+}
+
+.child .menu-item {
+    flex: 0 0 33.333%;
+    scroll-snap-align: start;
+}
+
+.child .menu-container::-webkit-scrollbar {
+    display: none;
+}
+
+.child .menu-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 0px 15px;
+}
+
+.child .menu-container, .child .order-summary {
+    flex-shrink: 0; /* 메뉴와 주문내역의 크기는 줄지 않음 */
+}
+.modal-menu-options {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.option-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.total-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: right;
+    margin-top: 15px;
+}
+
+/* 모달 디자인 개선 */
+.modal-menu-options {
+    background-color: #f4f6f9;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.option-item {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#cartSidebar {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    transition: bottom 0.3s ease;
+    z-index: 1050;
+    padding: 20px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+#cartSidebar.show {
+    bottom: 0;
+}
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1040;
+    display: none;
+}
+
+.cart-overlay.show {
+    display: block;
+}
+
+/* 노인 모드 추가 스타일 */
+.elderly {
+    font-size: 2.4rem;
+}
+
+.elderly .nav-pills .nav-link {
+    font-size: 2.6rem;
+}
+
+.elderly .modal-dialog {
+    max-width: 90%;
+    margin: 2.2rem auto;
+}
+.elderly .modal-dialog .modal-content {
+    font-size: 1.2rem;
+}
+
+/* 어린이 모드 추가 스타일 */
+.child .menu-container {
+    margin-bottom: 0px;
+}
+
+.child .menu-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+}
+
+.child .menu-item {
+    flex: 0 0 33.333%;
+    scroll-snap-align: start;
+}
+
+.child .menu-container::-webkit-scrollbar {
+    display: none;
+}
+
+.child .menu-container {
+    height: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.elderly #cartSidebar {
+    font-size: 3.2rem;
+}
+
+
+.elderly #cartSidebar .total-price {
+    font-size: 1.8rem;
+}
+
+/* 노인 모드 모달 개선 */
+.elderly .modal-menu-options h6 {
+    font-size: 3.2rem;
+}
+.elderly .option-item label {
+    font-size: 2.8rem;
+}
+
+/* 어린이 모드 모달 위치 */
+.child .modal-dialog {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: 100%;
+}
+.child .modal-dialog .modal-content {
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 0;
+}
+
+/* 장바구니 오버레이와 사이드바 스타일 유지 */
+#cartSidebar {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    transition: bottom 0.3s ease;
+    z-index: 1050;
+    padding: 20px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+#cartSidebar.show {
+    bottom: 0;
+}
+
+
+/* 수량 입력 필드 및 버튼 스타일 */
+.input-group {
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+#quantity {
+    width: 60px; /* 입력 필드 너비 */
+    height: 40px; /* 입력 필드 높이 */
+    font-size: 1rem; /* 글자 크기 */
+    text-align: center;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+}
+
+.input-group .btn {
+    height: 40px; /* 입력 필드와 동일한 높이 */
+    width: 50px; /* 버튼 폭 설정 */
+    font-size: 1rem; /* 버튼 글자 크기 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group .btn:active {
+    background-color: #e0e0e0; /* 버튼 활성화 시 배경색 */
+}
+
+.input-group .btn-outline-dark, .btn-outline-dark:focus {
+    background-color: gainsboro;
+    border-color: black; /* 테두리 색상 */
+    color: black; /* 텍스트 색상 */
+    box-shadow: none;
+}
+
+.input-group .btn-outline-dark:hover {
+    background-color: black; /* 호버 시 배경색 */
+    color: white; /* 호버 시 텍스트 색상 */
+}
+
+/* 숫자 조절 버튼 숨기기 (웹킷 브라우저: Chrome, Edge, Safari) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* 기본 화살표 제거 */
+    margin: 0; /* 여백 제거 */
+}
+
+/* 숫자 조절 버튼 숨기기 (Firefox) */
+input[type="number"] {
+    -moz-appearance: textfield; /* 기본 화살표 제거 */
+}
+
+/* 주문 내역 스타일 */
+.order-summary {
+    height: 300px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 5px 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9f9; /* 스크롤바 배경색 */
+}
+
+.order-summary::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* 스크롤바 색상 */
+    border-radius: 4px;
+}
+
+#cartItemsContainer {
+    max-height: 180px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 스크롤 활성화 */
+}
+
+#cartItemsContainer::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9f9; /* 스크롤바 배경색 */
+}
+
+#cartItemsContainer::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* 스크롤바 색상 */
+    border-radius: 4px;
+}
+
+.total-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: right;
+}
+
+/*스크롤바 숨기기*/
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-container::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none;
+}
+
+/* 어린이 모드 - 주문내역 상단 고정 */
+.child .order-summary {
+    max-height: 850px; /* 최대 높이 */
+    overflow-y: hidden; /* 높이를 초과하면 스크롤 활성화 */
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+}
+
+/* 주문 항목 컨테이너 스타일 */
+.child #cartItemsContainer {
+    max-height: 800px;
+    flex-grow: 1; /* 내부에서 높이 조정 */
+    overflow-y: auto; /* 높이를 초과하면 스크롤 활성화 */
+}
+
+/* 스크롤바 숨기기 (웹킷 브라우저) */
+.child #cartItemsContainer::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9f9; /* 스크롤바 배경색 */
+}
+
+.child #cartItemsContainer::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* 스크롤바 색상 */
+    border-radius: 4px;
+}
+
+/* 어린이 모드 - 주문하기 버튼 하단 고정 */
+.child .order-button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px 20px;
+}
+
+/* 기본 스타일 (성인 및 노인 모드) */
+.order-summary, .order-button-container {
+    position: static; /* 기본 위치 */
+    margin-top: 20px;
+}
+
+/* 메뉴 컨테이너 여백 조정 */
+.menu-container {
+    margin-bottom: 100px; /* 주문하기 버튼 여백 */
+}
+
+.dummy-order-space{
+    height: 0px;
+    display: none;
+}
+
+.child .dummy-order-space {
+    height: 500px;
+    display: block;
+}
+
+.fixed-order-container {
+    position: static; /* 기본 위치 */
+    width: 100%;
+}
+
+.child .fixed-order-container {
+    position: fixed; /* 어린이 모드에서 고정 */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: white; /* 배경색 설정 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
